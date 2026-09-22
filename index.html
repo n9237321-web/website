@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bioplastik Anggur Laut | Riset Inovasi Caulerpa lentillifera</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            },
+            leaf: {
+              light: '#f0fdf4',
+              medium: '#22c55e',
+              dark: '#15803d'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #a7f3d0;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #10b981;
+    }
+    
+    /* Presentation Section Indicator */
+    .section-active {
+      border-color: #059669 !important;
+      background-color: #ecfdf5 !important;
+      color: #047857 !important;
+      font-weight: 700;
+    }
+
+    /* Subtle Pattern Background */
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-100 selection:text-brand-900 bg-grid-pattern min-h-screen">
+
+  <!-- TOP READING PROGRESS BAR -->
+  <div class="fixed top-0 left-0 w-full h-1.5 z-50 bg-slate-200">
+    <div id="progressBar" class="h-full bg-gradient-to-r from-brand-500 via-emerald-400 to-teal-500 transition-all duration-150 w-0"></div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Logo / Title -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-emerald-700 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <!-- Seaweed Icon (SVG) -->
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v20M8 5a4 4 0 018 0M6 11a4 4 0 0112 0M8 17a4 4 0 018 0" />
+            </svg>
+          </div>
+          <div>
+            <span class="block text-base sm:text-lg font-bold text-slate-900 leading-tight tracking-tight group-hover:text-brand-700 transition-colors">
+              Caulerpa <span class="text-brand-600 font-extrabold">Biofilm</span>
+            </span>
+            <span class="block text-xs font-medium text-slate-500">Riset Inovasi Bahan Berkelanjutan</span>
+          </div>
+        </a>
+
+        <!-- Desktop Menu Items -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-semibold text-slate-600">
+          <a href="#abstrak" class="nav-item px-3 py-2 rounded-lg hover:text-brand-700 hover:bg-brand-50 transition-colors">Abstrak</a>
+          <a href="#latar-belakang" class="nav-item px-3 py-2 rounded-lg hover:text-brand-700 hover:bg-brand-50 transition-colors">Latar Belakang</a>
+          <a href="#tujuan" class="nav-item px-3 py-2 rounded-lg hover:text-brand-700 hover:bg-brand-50 transition-colors">Tujuan & Target</a>
+          <a href="#metodologi" class="nav-item px-3 py-2 rounded-lg hover:text-brand-700 hover:bg-brand-50 transition-colors">Metodologi</a>
+          <a href="#dokumentasi" class="nav-item px-3 py-2 rounded-lg hover:text-brand-700 hover:bg-brand-50 transition-colors">Dokumentasi</a>
+          <a href="#manfaat" class="nav-item px-3 py-2 rounded-lg hover:text-brand-700 hover:bg-brand-50 transition-colors">Manfaat</a>
+          <a href="#kesimpulan" class="nav-item px-3 py-2 rounded-lg hover:text-brand-700 hover:bg-brand-50 transition-colors">Kesimpulan</a>
+        </nav>
+
+        <!-- Presentation Mode Shortcut -->
+        <div class="flex items-center gap-2">
+          <button id="togglePresenter" title="Aktifkan panduan keyboard navigasi presentasi" class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold text-brand-800 bg-brand-50 border border-brand-200 hover:bg-brand-100 transition-colors shadow-sm">
+            <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span>Mode Presentasi (Keyboard)</span>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-2 shadow-lg">
+      <a href="#abstrak" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-700">Abstrak</a>
+      <a href="#latar-belakang" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-700">Latar Belakang</a>
+      <a href="#tujuan" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-700">Tujuan & Target</a>
+      <a href="#metodologi" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-700">Metodologi</a>
+      <a href="#dokumentasi" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-700">Dokumentasi</a>
+      <a href="#manfaat" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-700">Manfaat</a>
+      <a href="#kesimpulan" class="block px-3 py-2 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-700">Kesimpulan</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="presentation-section relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
+      <!-- Glow Decor -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-4xl mx-auto">
+          
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-100 text-brand-800 border border-brand-200 mb-6 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+            Karya Ilmiah & Inovasi Biopolimer Ramah Lingkungan
+          </div>
+
+          <!-- Main Title -->
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight sm:leading-tight mb-6">
+            Pemanfaatan <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-emerald-500">Anggur Laut</span> (<span class="italic font-bold">Caulerpa lentillifera</span>) untuk Bioplastik
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="text-lg sm:text-xl text-slate-600 mb-8 leading-relaxed max-w-3xl mx-auto font-normal">
+            Solusi inovatif berbasis variasi gliserol sebagai pemlastis alami untuk menghasilkan material bioplastik ramah lingkungan yang mampu terurai cepat di alam.
+          </p>
+
+          <!-- Authors Card -->
+          <div class="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-4 p-3 bg-white/80 backdrop-blur rounded-2xl border border-slate-200 shadow-md mb-10">
+            <div class="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-700 px-3 py-1.5 bg-slate-50 rounded-xl">
+              <span class="w-7 h-7 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold text-xs">N</span>
+              Nabiel Raia Zupharie
+            </div>
+            <div class="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-700 px-3 py-1.5 bg-slate-50 rounded-xl">
+              <span class="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">S</span>
+              Sifa Meylani
+            </div>
+            <div class="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-700 px-3 py-1.5 bg-slate-50 rounded-xl">
+              <span class="w-7 h-7 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold text-xs">J</span>
+              Juniati Ramadhani
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#abstrak" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-brand-600 to-emerald-600 hover:from-brand-700 hover:to-emerald-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 transition-all hover:-translate-y-0.5">
+              <span>Jelajahi Hasil Riset</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </a>
+            <a href="#metodologi" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-slate-700 bg-white hover:bg-slate-100 border border-slate-300 shadow-sm transition-all hover:-translate-y-0.5">
+              <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+              <span>Alur Metodologi Ilmiah</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Hero Visual Showcase -->
+        <div class="mt-14 max-w-5xl mx-auto">
+          <div class="relative bg-white rounded-3xl p-4 sm:p-6 shadow-xl border border-slate-200/80">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              
+              <!-- Image Banner -->
+              <div class="md:col-span-7 h-full overflow-hidden rounded-2xl relative group min-h-[340px] sm:min-h-[400px]">
+                <img src="asset/anggur--laut.jpg" alt="Sampel Anggur Laut Caulerpa lentillifera" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" style="object-position: center 30%;" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex items-end p-4 sm:p-6">
+                  <p class="text-white text-xs sm:text-sm font-medium backdrop-blur-sm bg-slate-900/40 px-3 py-1.5 rounded-lg border border-white/20">
+                    🌿 Anggur Laut (<span class="italic">Caulerpa lentillifera</span>) Asal Kepulauan Riau
+                  </p>
+                </div>
+              </div>
+
+              <!-- Quick Highlights -->
+              <div class="md:col-span-5 space-y-3.5">
+                <div class="p-3.5 sm:p-4 rounded-2xl bg-brand-50 border border-brand-100">
+                  <div class="text-xs font-bold text-brand-700 uppercase tracking-wider mb-1">Keunggulan Bahan</div>
+                  <div class="text-base font-bold text-slate-900">Polisakarida Alami Melimpah</div>
+                  <p class="text-xs text-slate-600 mt-1">Mengandung matriks polimer organik potensial sebagai kerangka dasar bioplastik.</p>
+                </div>
+
+                <div class="p-3.5 sm:p-4 rounded-2xl bg-emerald-50 border border-emerald-100">
+                  <div class="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1">Fungsi Gliserol</div>
+                  <div class="text-base font-bold text-slate-900">Plasticizer Anti-Rapuh</div>
+                  <p class="text-xs text-slate-600 mt-1">Variasi rasio gliserol meningkatkan fleksibilitas dan elastisitas lembaran film.</p>
+                </div>
+
+                <div class="p-3.5 sm:p-4 rounded-2xl bg-teal-50 border border-teal-100">
+                  <div class="text-xs font-bold text-teal-700 uppercase tracking-wider mb-1">Fungsi Pati Singkong</div>
+                  <div class="text-base font-bold text-slate-900">Matriks Polimer & Penguat</div>
+                  <p class="text-xs text-slate-600 mt-1">Kandungan amilosa dan amilopektin berfungsi memperkuat struktur kohesi film bioplastik serta membantu proses gelatinisasi.</p>
+                </div>
+
+                <div class="p-3.5 sm:p-4 rounded-2xl bg-teal-50 border border-teal-100">
+                  <div class="text-xs font-bold text-teal-700 uppercase tracking-wider mb-1">Dampak Lingkungan</div>
+                  <div class="text-base font-bold text-slate-900">100% Cepat Terdegradasi</div>
+                  <p class="text-xs text-slate-600 mt-1">Hancur secara hayati di tanah tanpa meninggalkan mikroplastik beracun.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: ABSTRAK -->
+    <section id="abstrak" class="presentation-section py-20 bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-brand-600 font-bold text-xs uppercase tracking-widest bg-brand-50 px-3 py-1.5 rounded-full border border-brand-200">Executive Summary</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">Abstrak Penelitian</h2>
+          <p class="text-slate-600 mt-4 leading-relaxed">
+            Ringkasan 4 pilar utama penelitian pemanfaatan biomaterial makroalga tropis untuk mengatasi pencemaran limbah plastik sintetis.
+          </p>
+        </div>
+
+        <!-- 4 Cards Grid Sesuai Slide Abstrak -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Pillar 1 -->
+          <div class="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Pilar 01</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-1 mb-3">Masalah Plastik Konvensional</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Penggunaan plastik konvensional yang tidak ramah lingkungan semakin berpotensi mencemari ekosistem. Diperlukan alternatif bahan organik yang dapat terdegradasi secara alami tanpa merusak tanah dan perairan.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center text-xs font-semibold text-slate-500">
+              <span class="text-amber-600 font-bold mr-1">Urgensi:</span> Ancaman Mikroplastik
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Pilar 02</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-1 mb-3">Potensi Bahan Alami & Gliserol</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Anggur laut (<span class="italic">Caulerpa lentillifera</span>) yang melimpah di Kepulauan Riau (Kab. Karimun) memiliki komposisi polisakarida alami sebagai bahan dasar bioplastik. Penambahan gliserol berfungsi sebagai pemlastis (<span class="italic">plasticizer</span>) untuk mereduksi sifat rapuh film.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center text-xs font-semibold text-slate-500">
+              <span class="text-brand-600 font-bold mr-1">Bahan Baku:</span> Komoditas Lokal Karimun
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Pilar 03</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-1 mb-3">Metode & Uji Biodegradasi</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Penelitian ini menggunakan teknik <span class="italic font-semibold">solution casting</span> (pembuatan film polimer). Uji biodegradasi dievaluasi dengan mengukur dan menganalisis penurunan persentase massa bioplastik secara periodik.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center text-xs font-semibold text-slate-500">
+              <span class="text-teal-600 font-bold mr-1">Metode:</span> Solution Casting & Degradasi
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Pilar 04</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-1 mb-3">Solusi Ramah Lingkungan</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Inovasi bioplastik berbasis anggur laut dan gliserol diharapkan menjadi alternatif solutif pengganti plastik petroleum, membantu menurunkan timbunan sampah melalui material yang cepat terurai secara alami.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center text-xs font-semibold text-slate-500">
+              <span class="text-emerald-600 font-bold mr-1">Output:</span> Material Bio-Degradable
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: LATAR BELAKANG -->
+    <section id="latar-belakang" class="presentation-section py-20 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-6 space-y-6">
+            <span class="text-brand-600 font-bold text-xs uppercase tracking-widest bg-brand-100 px-3 py-1.5 rounded-full border border-brand-200">Konteks & Urgensi</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Mengapa Anggur Laut?
+            </h2>
+            <p class="text-slate-600 leading-relaxed">
+              Indonesia menghadapi krisis timbunan sampah plastik yang mencapai jutaan ton per tahun dan mencemari ekosistem laut. Plastik sintetik berbasis minyak bumi membutuhkan ratusan tahun untuk terurai dan terfragmentasi menjadi mikroplastik berbahaya.
+            </p>
+            
+            <div class="space-y-4 pt-2">
+              
+              <div class="flex gap-4 p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 font-bold">1</div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-base">Kelimpahan Sumber Daya Lokal di Karimun</h4>
+                  <p class="text-sm text-slate-600 mt-1">
+                    Kabupaten Karimun, Kepulauan Riau, memiliki budidaya dan sebaran liar anggur laut (<span class="italic">Caulerpa lentillifera</span>) yang sangat tinggi. Sebagian besar baru dimanfaatkan sebagai lalapan pangan lokal.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4 p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-bold">2</div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-base">Kandungan Polisakarida Alami</h4>
+                  <p class="text-sm text-slate-600 mt-1">
+                    Dinding sel makroalga hijau kaya akan polisakarida yang mampu membentuk ikatan rantai polimer saat dilarutkan, menjadikannya bahan matrik biopolimer alami yang ideal.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex gap-4 p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+                <div class="w-10 h-10 rounded-lg bg-teal-100 text-teal-700 flex items-center justify-center shrink-0 font-bold">3</div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-base">Peran Krusial Variasi Gliserol & Pati Singkong</h4>
+                  <p class="text-sm text-slate-600 mt-1">
+                    Film polisakarida murni bersifat kaku dan mudah retak. Penambahan molekul gliserol dan pati singkong menyusup di antara rantai polimer, menurunkan gaya intermolekul dan memberikan fleksibilitas mekanik yang lentur.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Infographic Visual Column -->
+          <div class="lg:col-span-6">
+            <div class="bg-gradient-to-br from-brand-600 via-emerald-600 to-teal-700 rounded-3xl p-8 sm:p-10 text-white shadow-2xl relative overflow-hidden">
+              <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+              
+              <h3 class="text-2xl font-black mb-6 tracking-tight">Perbandingan Material</h3>
+
+              <div class="space-y-6">
+                <!-- Plastic item -->
+                <div class="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/10">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-bold text-sm tracking-wide text-red-200 uppercase">Plastik Sintetik Minyak Bumi</span>
+                    <span class="text-xs px-2.5 py-1 rounded bg-red-500/30 text-red-200 font-semibold">Berbahaya</span>
+                  </div>
+                  <ul class="text-xs sm:text-sm text-slate-100 space-y-1.5 opacity-90">
+                    <li>• Terurai dalam 100 - 500 tahun di alam</li>
+                    <li>• Beracun bagi ekosistem dan biota laut</li>
+                    <li>• Bersumber dari bahan bakar fosil tidak terbarukan</li>
+                  </ul>
+                </div>
+
+                <!-- Bioplastic item -->
+                <div class="bg-white/20 backdrop-blur rounded-2xl p-5 border border-white/30 shadow-inner">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-bold text-sm tracking-wide text-emerald-200 uppercase">Bioplastik Caulerpa + Gliserol + Pati Singkong</span>
+                    <span class="text-xs px-2.5 py-1 rounded bg-emerald-400 text-emerald-950 font-bold whitespace-nowrap">Solusi Riset</span>
+                  </div>
+                  <ul class="text-xs sm:text-sm text-white space-y-1.5 font-medium">
+                    <li>• Terdegradasi alami dalam hitungan hari hingga minggu</li>
+                    <li>• 100% aman untuk tanah & kompos organik</li>
+                    <li>• Bersumber dari biomassa laut lokal terbarukan</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-8 pt-6 border-t border-white/20 flex items-center justify-between text-xs text-emerald-100">
+                <span>Lokasi Studi Bahan: Kab. Karimun, Kepri</span>
+                <span class="font-semibold">SMAN 3 KARIMUN</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: TUJUAN & TARGET -->
+    <section id="tujuan" class="presentation-section py-20 bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-brand-600 font-bold text-xs uppercase tracking-widest bg-brand-50 px-3 py-1.5 rounded-full border border-brand-200">Fokus Penelitian</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">Tujuan & Target Program</h2>
+          <p class="text-slate-600 mt-4 leading-relaxed">
+            Sasaran terukur yang hendak dicapai melalui formulasi ilmiah dan evaluasi kinerja material bioplastik.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          
+          <!-- Box Tujuan -->
+          <div class="bg-gradient-to-b from-slate-50 to-white rounded-3xl p-8 border border-slate-200 shadow-sm relative overflow-hidden">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center mb-6 font-bold">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Tujuan Penelitian</h3>
+            <ul class="space-y-4 text-sm text-slate-600">
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">✓</span>
+                <span>Menguji potensi polisakarida dari makroalga anggur laut (<span class="italic">Caulerpa lentillifera</span>) sebagai matriks biopolimer.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">✓</span>
+                <span>Menganalisis pengaruh variasi konsentrasi gliserol terhadap fleksibilitas dan integritas mekanik film bioplastik.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">✓</span>
+                <span>Menentukan laju biodegradabilitas bioplastik melalui uji penurunan persentase massa di media tanah secara kuantitatif.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Box Target -->
+          <div class="bg-gradient-to-b from-slate-50 to-white rounded-3xl p-8 border border-slate-200 shadow-sm relative overflow-hidden">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-6 font-bold">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Target Program</h3>
+            <ul class="space-y-4 text-sm text-slate-600">
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">★</span>
+                <span><strong>Formulasi Optimal:</strong> Terciptanya film bioplastik yang homogen, tidak mudah pecah, dan memiliki ketebalan seragam.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">★</span>
+                <span><strong>Biodegradasi Cepat:</strong> Mengalami reduksi massa signifikan dalam uji degradasi tanah alami tanpa residu sintetis.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">★</span>
+                <span><strong>Aplikasi Nyata:</strong> Menjadi purwarupa kemasan ramah lingkungan alternatif untuk barang sekali pakai (*single-use*).</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: METODOLOGI -->
+    <section id="metodologi" class="presentation-section py-20 bg-slate-50 border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-brand-600 font-bold text-xs uppercase tracking-widest bg-brand-100 px-3 py-1.5 rounded-full border border-brand-200">Alur Ilmiah</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">Implementasi & Metodologi Program</h2>
+          <p class="text-slate-600 mt-4 leading-relaxed">
+            Tahapan sistematis pembuatan lembaran bioplastik dengan teknik <span class="italic font-semibold">solution casting</span> dan pengujian biodegradasi.
+          </p>
+        </div>
+
+        <!-- 4 Steps Interactive Workflow -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          
+          <!-- Step 1 -->
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative group hover:border-brand-400 transition-colors">
+            <div class="text-3xl font-black text-brand-200 group-hover:text-brand-500 transition-colors mb-4">01</div>
+            <h4 class="text-base font-bold text-slate-900 mb-2">Preparasi & Ekstraksi</h4>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              Pembersihan anggur laut segar dari sedimen laut, perendaman, dan ekstraksi komponen polisakarida alami untuk mendapatkan larutan suspensi polimer.
+            </p>
+            <div class="bg-slate-50 p-2.5 rounded-xl text-[11px] font-semibold text-slate-700 border border-slate-100">
+              📌 Output: Ekstrak Polisakarida Murni
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative group hover:border-brand-400 transition-colors">
+            <div class="text-3xl font-black text-brand-200 group-hover:text-brand-500 transition-colors mb-4">02</div>
+            <h4 class="text-base font-bold text-slate-900 mb-2">Formulasi Variasi Gliserol</h4>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              Pencampuran ekstrak dengan gliserol murni pada variasi konsentrasi tertentu untuk menguji tingkat elastisitas dan ketahanan terhadap kerapuhan.
+            </p>
+            <div class="bg-slate-50 p-2.5 rounded-xl text-[11px] font-semibold text-slate-700 border border-slate-100">
+              📌 Output: Dope Polimer Homogen
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative group hover:border-brand-400 transition-colors">
+            <div class="text-3xl font-black text-brand-200 group-hover:text-brand-500 transition-colors mb-4">03</div>
+            <h4 class="text-base font-bold text-slate-900 mb-2">Teknik Solution Casting</h4>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              Penuangan larutan ke dalam plat cetakan datar secara merata, kemudian dikeringkan dalam kondisi suhu stabil hingga terbentuk lembaran film tipis yang elastis.
+            </p>
+            <div class="bg-slate-50 p-2.5 rounded-xl text-[11px] font-semibold text-slate-700 border border-slate-100">
+              📌 Output: Lembaran Film Bioplastik
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative group hover:border-brand-400 transition-colors">
+            <div class="text-3xl font-black text-brand-200 group-hover:text-brand-500 transition-colors mb-4">04</div>
+            <h4 class="text-base font-bold text-slate-900 mb-2">Uji Biodegradasi</h4>
+            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+              Pengujian laju degradasi dengan metode <span class="italic">soil burial test</span>. Sampel ditimbang berkala untuk menghitung penurunan persentase massa (<span class="font-mono">% degradasi</span>).
+            </p>
+            <div class="bg-slate-50 p-2.5 rounded-xl text-[11px] font-semibold text-slate-700 border border-slate-100">
+              📌 Evaluasi: % Reduksi Massa Berkala
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Formula Callout -->
+        <div class="mt-10 max-w-2xl mx-auto bg-brand-50/80 rounded-2xl p-4 sm:p-5 border border-brand-200 text-center">
+          <span class="text-xs font-bold text-brand-800 uppercase tracking-wide block mb-1">Metrik Uji Biodegradabilitas</span>
+          <div class="font-mono text-sm sm:text-base font-bold text-brand-900">
+            Penurunan Massa (%) = [(Massa Awal - Massa Akhir) / Massa Awal] × 100%
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: DOKUMENTASI -->
+    <section id="dokumentasi" class="presentation-section py-20 bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-brand-600 font-bold text-xs uppercase tracking-widest bg-brand-50 px-3 py-1.5 rounded-full border border-brand-200">Bukti Eksperimen</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">Dokumentasi & Galeri Riset</h2>
+          <p class="text-slate-600 mt-4 leading-relaxed">
+            Dokumentasi bahan baku, materi presentasi penelitian, dan visualisasi tahapan karya ilmiah.
+          </p>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          
+          <!-- Card 1: Slide Cover -->
+          <div class="bg-slate-50 rounded-3xl p-5 border border-slate-200 shadow-sm group hover:shadow-md transition-all">
+            <div class="overflow-hidden rounded-2xl aspect-video relative bg-slate-200">
+              <img src="assets/dokumentasi1.png" alt="Cover Riset Bioplastik" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="mt-4">
+              <span class="text-[11px] font-bold text-brand-700 uppercase bg-brand-100 px-2.5 py-1 rounded-md">Lampiran Hasil Riset</span>
+              <h4 class="font-bold text-slate-900 text-base mt-2">Uji Absorpsi selama 2 Hari</h4>
+              <p class="text-xs text-slate-600 mt-1">Disusun oleh Nabiel Raia Zupharie, Sifa Meylani & Juniati Ramadhani.</p>
+            </div>
+          </div>
+
+          <!-- Card 2: Slide Abstrak -->
+          <div class="bg-slate-50 rounded-3xl p-5 border border-slate-200 shadow-sm group hover:shadow-md transition-all">
+            <div class="overflow-hidden rounded-2xl aspect-video relative bg-slate-200">
+              <img src="assets/dokumentasi2.png" alt="Slide Abstrak Penelitian" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="mt-4">
+              <span class="text-[11px] font-bold text-emerald-700 uppercase bg-emerald-100 px-2.5 py-1 rounded-md">Lampiran Hasil Riset</span>
+              <h4 class="font-bold text-slate-900 text-base mt-2">Uji Daya Tarik</h4>
+              <p class="text-xs text-slate-600 mt-1">Krisis plastik, potensi Caulerpa lentillifera, solution casting, dan uji degradasi.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: MANFAAT -->
+    <section id="manfaat" class="presentation-section py-20 bg-slate-50 border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-brand-600 font-bold text-xs uppercase tracking-widest bg-brand-100 px-3 py-1.5 rounded-full border border-brand-200">Dampak Nyata</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight">Manfaat Program Inovasi</h2>
+          <p class="text-slate-600 mt-4 leading-relaxed">
+            Kontribusi multidimensi dari riset bioplastik anggur laut terhadap lingkungan, sosial ekonomi masyarakat pesisir, dan pengembangan ilmu pengetahuan.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Manfaat Ekologis -->
+          <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Aspek Ekologis</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Membantu menurunkan akumulasi sampah plastik konvensional. Material organik bioplastik tidak menghasilkan residu zat kimia beracun, aman bagi cacing tanah dan mikroorganisme pengurai.
+            </p>
+          </div>
+
+          <!-- Manfaat Ekonomi Pesisir -->
+          <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Aspek Ekonomi Lokal</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Memberikan nilai tambah (<span class="italic">added value</span>) ekonomi bagi pembudidaya anggur laut di Kabupaten Karimun, membuka potensi industri biomaterial baru berbasis komoditas maritim.
+            </p>
+          </div>
+
+          <!-- Aspek Riset & Edukasi -->
+          <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Aspek Edukasi & Sains</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Memperkaya khazanah penelitian polimer hijau di Indonesia, membuktikan bahwa makroalga tropis memiliki potensi teknologi tinggi yang mampu dikembangkan lebih lanjut ke skala komersial.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: KESIMPULAN -->
+    <section id="kesimpulan" class="presentation-section py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-4xl mx-auto bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+          
+          <div class="relative z-10">
+            <span class="text-brand-400 font-bold text-xs uppercase tracking-widest bg-brand-950/60 px-3 py-1.5 rounded-full border border-brand-800">Sintesis Riset</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 mb-6 tracking-tight">Kesimpulan Penelitian</h2>
+            
+            <div class="space-y-4 text-slate-200 text-sm sm:text-base leading-relaxed">
+              <div class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-brand-500/30 text-brand-300 flex items-center justify-center shrink-0 text-xs font-bold mt-1">1</span>
+                <p>
+                  Anggur laut (<span class="italic">Caulerpa lentillifera</span>) terbukti secara efektif memiliki kandungan polisakarida yang dapat diformulasikan menjadi lembaran film bioplastik melalui metode <span class="italic">solution casting</span>.
+                </p>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-brand-500/30 text-brand-300 flex items-center justify-center shrink-0 text-xs font-bold mt-1">2</span>
+                <p>
+                  Penambahan gliserol sebagai pemlastis (<span class="italic">plasticizer</span>) berhasil mengatasi sifat getas dan rapuh dari polimer alami, menghasilkan film yang lebih lentur dan mudah diaplikasikan.
+                </p>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-brand-500/30 text-brand-300 flex items-center justify-center shrink-0 text-xs font-bold mt-1">3</span>
+                <p>
+                  Uji biodegradasi menunjukkan penurunan massa yang nyata dalam media penguraian alami, menegaskan bahwa bioplastik anggur laut merupakan solusi berkelanjutan yang aman bagi lingkungan dan layak dikembangkan lebih lanjut.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-10 pt-8 border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="text-xs text-slate-400">
+                Karya Ilmiah Oleh: Nabiel Raia Z., Sifa M., Juniati R.
+              </div>
+              <a href="#hero" class="inline-flex items-center gap-2 text-xs font-bold text-brand-400 hover:text-brand-300 transition-colors">
+                <span>Kembali ke Atas</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                </svg>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-100 border-t border-slate-200 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:flex sm:justify-between sm:items-center">
+      <div class="flex items-center justify-center sm:justify-start gap-2 mb-4 sm:mb-0">
+        <div class="w-7 h-7 rounded-lg bg-brand-600 text-white flex items-center justify-center text-xs font-bold">C</div>
+        <span class="font-bold text-slate-800 text-sm">Bioplastik Caulerpa lentillifera</span>
+      </div>
+      <p class="text-xs text-slate-500">
+        © 2026 Tim Peneliti: Nabiel Raia Zupharie, Sifa Meylani & Juniati Ramadhani. Dibuat untuk Presentasi Ilmiah.
+      </p>
+    </div>
+  </footer>
+
+  <!-- FLOATING PRESENTATION CONTROLLER (Lookable & Smooth Navigation) -->
+  <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-2">
+    <!-- Prev Section -->
+    <button id="prevBtn" title="Seksi Sebelumnya (Arrow Up / Page Up)" class="w-11 h-11 rounded-full bg-white/95 text-slate-700 hover:text-brand-700 hover:bg-brand-50 border border-slate-200 shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
+    <!-- Next Section -->
+    <button id="nextBtn" title="Seksi Berikutnya (Arrow Down / Page Down / Space)" class="w-11 h-11 rounded-full bg-brand-600 text-white hover:bg-brand-700 border border-brand-700 shadow-lg shadow-brand-500/30 flex items-center justify-center transition-all hover:scale-110 active:scale-95">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- JAVASCRIPT: Smooth Scroll, Scrollspy, Presentation Keys -->
+  <script>
+    // 1. Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // 2. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    // Close mobile menu on clicking any link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // 3. Section Navigation for Live Presentation (Keyboard & Floating Buttons)
+    const sections = Array.from(document.querySelectorAll('.presentation-section'));
+    let currentSectionIndex = 0;
+
+    function getActiveSectionIndex() {
+      const scrollY = window.scrollY + 200;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        if (sections[i].offsetTop <= scrollY) {
+          return i;
+        }
+      }
+      return 0;
+    }
+
+    function scrollToSection(index) {
+      if (index >= 0 && index < sections.length) {
+        currentSectionIndex = index;
+        sections[index].scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      const nextIndex = Math.min(sections.length - 1, getActiveSectionIndex() + 1);
+      scrollToSection(nextIndex);
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      const prevIndex = Math.max(0, getActiveSectionIndex() - 1);
+      scrollToSection(prevIndex);
+    });
+
+    // Keyboard Arrow Keys / Space for Presenter
+    window.addEventListener('keydown', (e) => {
+      if (['ArrowDown', 'PageDown', ' '].includes(e.key) && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        const nextIndex = Math.min(sections.length - 1, getActiveSectionIndex() + 1);
+        scrollToSection(nextIndex);
+      } else if (['ArrowUp', 'PageUp'].includes(e.key) && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        const prevIndex = Math.max(0, getActiveSectionIndex() - 1);
+        scrollToSection(prevIndex);
+      }
+    });
+
+    // Toggle Presenter notification toast
+    document.getElementById('togglePresenter').addEventListener('click', () => {
+      alert("Mode Navigasi Presentasi Aktif!\n\nGunakan tombol keyboard [Panah Bawah] / [Space] / [PageDown] untuk melompat ke seksi berikutnya, dan [Panah Atag] / [PageUp] untuk seksi sebelumnya.");
+    });
+  </script>
+</body>
+</html>
